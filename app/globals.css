@@ -1,0 +1,77 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-ring: var(--ring);
+  --color-border: var(--border);
+
+  --color-paper: #fffefd;
+  --color-cream: #f5f2eb;
+  --color-ink: #292723;
+  --color-gold: #b9974b;
+  --color-gold-deep: #7f6328;
+  --color-line: #dfd2b7;
+  --color-champagne: #e0c98f;
+
+  --font-serif: Georgia, 'Times New Roman', serif;
+  --font-sans: Arial, Helvetica, sans-serif;
+}
+
+:root {
+  --background: #fffefd;
+  --foreground: #292723;
+  --primary: #7f6328;
+  --primary-foreground: #ffffff;
+  --ring: #b9974b;
+  --border: #dfd2b7;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground font-serif;
+  }
+}
+
+.envelope-flap {
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top;
+  transition: transform 0.65s ease;
+}
+
+.envelope-lines {
+  background:
+    linear-gradient(140deg, transparent 49.5%, #e2d3ae 50%, transparent 50.5%),
+    linear-gradient(220deg, transparent 49.5%, #e2d3ae 50%, transparent 50.5%);
+}
+
+.envelope[data-open='true'] .envelope-flap {
+  transform: rotateX(180deg);
+}
+
+.envelope[data-open='true'] .envelope-seal {
+  opacity: 0;
+}
+
+.seal-gradient {
+  background: radial-gradient(circle at 35% 30%, #e6d09d, #a9823c);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .envelope-flap {
+    transition: none;
+  }
+}
